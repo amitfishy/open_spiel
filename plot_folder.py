@@ -43,6 +43,9 @@ plt.figure(figsize=(16.0, 9.0))
 
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 
+plt.xscale('log')
+plt.yscale('log')
+
 for filename in os.listdir(folder_name):
 	if os.path.isfile(os.path.join(folder_name, filename)):
 		#Loading the data
@@ -56,7 +59,7 @@ for filename in os.listdir(folder_name):
 		nc_upper_quartile = np.percentile(nash_conv_values_s, 75, axis=0)
 		nc_lower_quartile = np.percentile(nash_conv_values_s, 25, axis=0)
 
-		plt.plot(steps_s, nc_data_median, color=colors[color_index], linewidth=0.5, label=plot_str)
+		plt.plot(steps_s, nc_data_median, color=colors[color_index], linewidth=2.0, label=plot_str)
 		plt.fill_between(steps_s, nc_upper_quartile, nc_lower_quartile, alpha=0.2, edgecolor=colors[color_index], facecolor=colors[color_index])
 		color_index = color_index + 1
 

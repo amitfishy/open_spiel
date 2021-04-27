@@ -37,10 +37,10 @@ def main(argv):
 	nash_conv_values_s = []
 	steps_s = []
 
-    if FLAGS.actorcritic_method == 'PPO':
-      args_list = [str(FLAGS.game_name), str(FLAGS.num_steps), str(FLAGS.print_freq), str(FLAGS.init_lr), str(FLAGS.regularizer_scale), str(FLAGS.num_hidden), str(FLAGS.num_layers), str(FLAGS.actorcritic_method), str(FLAGS.N_epochs), str(FLAGS.ppo_eps), str(FLAGS.min_policy_eps)]
-    else:
-      args_list = [str(FLAGS.game_name), str(FLAGS.num_steps), str(FLAGS.print_freq), str(FLAGS.init_lr), str(FLAGS.regularizer_scale), str(FLAGS.num_hidden), str(FLAGS.num_layers), str(FLAGS.actorcritic_method)]
+	if FLAGS.actorcritic_method == 'PPO':
+		args_list = [str(FLAGS.game_name), str(FLAGS.num_steps), str(FLAGS.print_freq), str(FLAGS.init_lr), str(FLAGS.regularizer_scale), str(FLAGS.num_hidden), str(FLAGS.num_layers), str(FLAGS.actorcritic_method), str(FLAGS.N_epochs), str(FLAGS.ppo_eps), str(FLAGS.min_policy_eps)]
+	else:
+		args_list = [str(FLAGS.game_name), str(FLAGS.num_steps), str(FLAGS.print_freq), str(FLAGS.init_lr), str(FLAGS.regularizer_scale), str(FLAGS.num_hidden), str(FLAGS.num_layers), str(FLAGS.actorcritic_method)]
 	output_folder = os.path.join(FLAGS.results_folder, '_'.join(args_list))
 	assert os.path.exists(output_folder), 'The output folder: ' + output_folder + ' does not exist to concatenate random seed results within.'
 	for filename in os.listdir(output_folder):
@@ -53,4 +53,4 @@ def main(argv):
 	np.savez(os.path.join(output_folder, 'concat_result.npz'), nash_conv_values_s = nash_conv_values_s, steps_s = steps_s)
 
 if __name__ == "__main__":
-  app.run(main)
+	app.run(main)
