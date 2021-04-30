@@ -6,25 +6,25 @@ virtualhome=${vm_dir}/${project_name}
 
 mkdir -p $userhome/scratch/${project_name}
 
-MEM=2G
-TIME=02:00:00
+MEM=4G
+TIME=50:00:00
 
 results_dir=${virtualhome}/results
-num_steps=10000
-print_freq=10
+num_steps=300
+print_freq=5
 regularizer_scale=0.001
 num_hidden=64
-num_layers=1
+num_layers=3
 N_epochs=4
 min_policy_eps=0.0001
 
 actorcritic_methods=(PPO)
 
-game_names=(kuhn_poker)
+game_names=(tiny_bridge_2p)
 
 seeds=(0 1 2 3 4)
 
-init_lrs=(0.06 0.08 0.1 0.2 0.3 0.4 0.5 0.6)
+init_lrs=(0.005 0.008 0.02 0.05 0.08 0.1 0.2)
 
 ppo_epss=(0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9)
 
@@ -69,7 +69,7 @@ else
 
 						echo "source $virtualhome/bin/activate" >> temprun.sh
 						echo "cd $virtualhome/code/open_spiel/open_spiel/python/examples" >> temprun.sh
-						echo "python exploitability_descent.py --game_name=${game_name} --num_steps=${num_steps} --print_freq=${print_freq} --init_lr=${init_lr} --regularizer_scale=${regularizer_scale} --num_hidden=${num_hidden} --num_layers=${num_layers} --results_folder=${results_dir} --actorcritic_method=${actorcritic_method} --seed=${seed} --N_epochs=${N_epochs} --ppo_eps=${ppo_eps} --min_policy_eps=${min_policy_eps}"
+						echo "python exploitability_descent.py --game_name=${game_name} --num_steps=${num_steps} --print_freq=${print_freq} --init_lr=${init_lr} --regularizer_scale=${regularizer_scale} --num_hidden=${num_hidden} --num_layers=${num_layers} --results_folder=${results_dir} --actorcritic_method=${actorcritic_method} --seed=${seed} --N_epochs=${N_epochs} --ppo_eps=${ppo_eps} --min_policy_eps=${min_policy_eps}" >> temprun.sh
 
 						eval "sbatch temprun.sh"
 						#added to submit job again if slurm error occurs (timeout error send/recv)
